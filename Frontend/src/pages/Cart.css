@@ -1,0 +1,298 @@
+.cart-container {
+    display: flex;
+    gap: 2rem;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #d5c7e0, #38106b);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .cart-items-section {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .cart-title {
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    color: #6a0572;
+    text-transform: uppercase;
+    border-bottom: 2px solid #6a0572;
+    padding-bottom: 10px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    transition: background-color 0.2s ease;
+  }
+  
+  .cart-item:hover {
+    background-color: #faf5ff;
+  }
+
+  .item-image img {
+    width: 120px;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .item-details {
+    flex: 1;
+    margin-left: 15px;
+  }
+  
+  .item-details h3 {
+    margin: 0 0 5px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .item-details p {
+    margin: 3px 0;
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  .item-total {
+    width: 80px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #6a0572;
+  }
+
+  .cart-summary-section {
+    flex: 1;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+  }
+  
+  .cart-summary-section h2 {
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #6a0572;
+    text-transform: uppercase;
+    border-bottom: 2px solid #6a0572;
+    padding-bottom: 10px;
+  }
+  
+  .promo-code {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .promo-code input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .promo-code button {
+    padding: 8px 16px;
+    background-color: #6a0572;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .promo-code button:hover {
+    background-color: #530455;
+  }
+  
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #333;
+  }
+  
+  .summary-line span:nth-child(2) {
+    font-weight: bold;
+  }
+  
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 280px;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    font-size: 1rem;
+    color: #6a0572;
+  }
+  
+  .checkout-btn {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    background: #6a0572;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+  }
+  
+  .checkout-btn:hover {
+    background: #530455;
+  }
+  
+  .help-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.2s ease;
+  }
+  
+  .qty-btn:hover {
+    background-color: #e2e2e2;
+  }
+  
+  .qty-value {
+    min-width: 24px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+[data-theme="dark"] .cart-container {
+    background: linear-gradient(135deg, #2e2a33, #1b1220) !important;
+  }
+  
+  [data-theme="dark"] .cart-items-section {
+    background-color: #1e1e1e !important;
+    box-shadow: none !important;
+  }
+  
+  [data-theme="dark"] .cart-title {
+    color: #e0b3ff !important;
+    border-bottom: 2px solid #e0b3ff !important;
+  }
+  
+  [data-theme="dark"] .cart-item {
+    border-bottom: 1px solid #444 !important;
+  }
+  
+  [data-theme="dark"] .cart-item:hover {
+    background-color: #2c2233 !important;
+  }
+  
+  [data-theme="dark"] .item-details h3 {
+    color: #ddd !important;
+  }
+  
+  [data-theme="dark"] .item-details p {
+    color: #aaa !important;
+  }
+  
+  [data-theme="dark"] .item-total {
+    color: #e0b3ff !important;
+  }
+  
+  [data-theme="dark"] .cart-summary-section {
+    background-color: #1e1e1e !important;
+    box-shadow: none !important;
+  }
+  
+  [data-theme="dark"] .cart-summary-section h2 {
+    color: #e0b3ff !important;
+    border-bottom: 2px solid #e0b3ff !important;
+  }
+  
+  [data-theme="dark"] .promo-code input {
+    background-color: #2e2e2e !important;
+    border-color: #555 !important;
+    color: #ddd !important;
+  }
+  
+  [data-theme="dark"] .promo-code button {
+    background-color: #8c52ff !important;
+  }
+  
+  [data-theme="dark"] .promo-code button:hover {
+    background-color: #6a36cc !important;
+  }
+  
+  [data-theme="dark"] .summary-line {
+    color: #ccc !important;
+  }
+  
+  [data-theme="dark"] .summary-total {
+    color: #e0b3ff !important;
+    border-top-color: #444 !important;
+  }
+  
+  [data-theme="dark"] .checkout-btn {
+    background-color: #8c52ff !important;
+  }
+  
+  [data-theme="dark"] .checkout-btn:hover {
+    background-color: #6a36cc !important;
+  }
+  
+  [data-theme="dark"] .help-text {
+    color: #999 !important;
+  }
+  
+  [data-theme="dark"] .qty-btn {
+    background-color: #2e2e2e !important;
+    color: #ddd !important;
+    border-color: #555 !important;
+  }
+  
+  [data-theme="dark"] .qty-btn:hover {
+    background-color: #454545 !important;
+  }
+  
+  [data-theme="dark"] .qty-value {
+    color: #ddd !important;
+  }

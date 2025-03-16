@@ -6,9 +6,8 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: [true, "Email is required"], unique: true, lowercase: true, trim: true },
     password: { type: String, required: [true, "Password is required"] },
     role: { type: String, enum: ["user", "admin"], default: "user" },
-     // New fields
-     profileImage: { type: String }, // URL or file path
-     coverImage: { type: String },   // URL or file path
+     profileImage: { type: String }, 
+     coverImage: { type: String },   
      phone: { type: String },
      address: { type: String },
      state: { type: String },

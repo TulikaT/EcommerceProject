@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
 
-
 const Header = ({ cartCount }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { user } = useContext(AuthContext);
   const isLight = theme === "light";
+  const defaultProfileImage = "./Images/defImg.jpg";
 
   return (
     <header className="header">
@@ -20,53 +20,37 @@ const Header = ({ cartCount }) => {
         </h1>
       </div>
       <nav>
-        <Link to="/" className="nav-link">
-          Home
-        </Link>
+        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/about-us" className="nav-link">About</Link>
+        <Link to="/contact-us" className="nav-link">Contact</Link>
 
         {user ? (
           <>
-            <Link
-              to={user.role === "admin" ? "/admin" : "/user/profile"}
-              className="nav-link"
-            >
-              Profile
+            <Link to={user.role === "admin" ? "/admin" : "/user/profile"} className="nav-link profile-link">
+              <img
+                src={user.profileImage || defaultProfileImage}
+                alt="User Profile"
+                className="profile-image"
+              />
             </Link>
             <Link to="/cart" className="cart-link">
               <i className="fa-solid fa-shopping-cart"></i>
-              {/* Display the numeric cartCount */}
               <span className="cart-count">{cartCount}</span>
             </Link>
           </>
         ) : (
           <>
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-            <Link to="/register" className="nav-link">
-              Register
-            </Link>
+            <Link to="/login" className="nav-link">Login</Link>
+            <Link to="/register" className="nav-link">Register</Link>
           </>
         )}
-
-        <Link to='/about-us' className="nav-link">AboutUs </Link>
-        <Link to='/contact-us' className="nav-link">ContactUs</Link>
       </nav>
 
       <button className="theme-toggle" id="tog" onClick={toggleTheme}>
-        {isLight ? (
-          <>
-            <FontAwesomeIcon icon={faMoon} className="icon" /> &nbsp;
-          </>
-        ) : (
-          <>
-            <FontAwesomeIcon icon={faSun} className="icon" /> &nbsp;
-          </>
-        )}
+        {isLight ? <FontAwesomeIcon icon={faMoon} className="icon" /> : <FontAwesomeIcon icon={faSun} className="icon" />}
       </button>
     </header>
   );
 };
 
 export default Header;
-

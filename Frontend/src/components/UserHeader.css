@@ -1,0 +1,15 @@
+.user-header {
+    background-color: #fff;
+    color: #000;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .user-header h1 {
+    font-size: 1.5rem;
+  }
+  

@@ -1,0 +1,76 @@
+.admin-sidebar {
+    background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+    color: #fff;
+    padding: 20px; 
+    max-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-sidebar h2 {
+    margin-bottom: 35px;
+    font-size: 1.8rem;
+  }
+  
+  .admin-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  
+  
+  .admin-sidebar nav ul li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar-logout {
+    text-align: center;
+  }
+  
+  .sidebar-logout button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .sidebar-logout button:hover {
+    color: #3184c9;
+  }
+  
+  
+
+  .admin-sidebar nav ul li a {
+    display: block;
+   
+    margin-left: -20px; 
+    margin-right: -20px;
+  
+   
+    padding: 10px 14px;
+    width: auto; 
+    box-sizing: border-box;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-radius: 0; 
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+  }
+
+  .admin-sidebar nav ul li a:hover,
+  .admin-sidebar nav ul li a.active {
+    background: rgba(255, 255, 255,0.2);
+    color: #2c0350;
+  }
+  
+  [data-theme="dark"] .admin-sidebar nav ul li a:hover,
+  [data-theme="dark"] .admin-sidebar nav ul li a.active {
+    background: #ffffff ;
+    color: #000000  ;
+  }
+  

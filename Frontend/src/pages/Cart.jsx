@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = ({ fetchCartCount }) => {
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const fetchCart = async () => {
     try {
@@ -40,8 +43,7 @@ const Cart = ({ fetchCartCount }) => {
       }
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const res = await axios.post("http://localhost:4000/api/cart/checkout", {}, config);
-      toast.success("Checkout successful!");
-      setCart(res.data.cart);
+      navigate("/checkout", { state: { total }});
       fetchCartCount();
     } catch (error) {
       toast.error("Checkout failed!");
@@ -100,10 +102,12 @@ const Cart = ({ fetchCartCount }) => {
   if (loading) return <p>Loading cart...</p>;
   if (error) return <p>{error}</p>;
   if (!cart || !cart.items || cart.items.length === 0) return <p>Your cart is empty.</p>;
+  
   const subtotal = cart.items.reduce((acc, item) => {
     const price = item.product?.price || 0;
     return acc + price * item.quantity;
   }, 0);
+
   const shipping = 0;
   const tax = subtotal * 0.07;
   const total = subtotal + shipping + tax;

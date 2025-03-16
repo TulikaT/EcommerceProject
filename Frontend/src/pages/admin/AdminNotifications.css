@@ -1,0 +1,52 @@
+.admin-notifications {
+    padding: 20px;
+  }
+  
+  .admin-notifications h2 {
+    margin-bottom: 20px;
+  }
+
+  [data-theme = "dark"] .admin-notifications h2{
+    color: #ccc;
+  }
+  
+  .admin-notifications table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .admin-notifications table th,
+  .admin-notifications table td {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .admin-notifications table th {
+    background-color: #f4f6f9;
+    font-weight: 600;
+  }
+
+  [data-theme = "dark"] .admin-notifications table th{
+    background-color: #222;
+    color: #fff;
+  }
+
+  .admin-notifications table th{
+    color: #000;
+  }
+  
+ 
+  
+  .admin-notifications table tr:hover {
+    background-color: #eaeaea;
+  }
+  
+  .admin-notifications button {
+    padding: 6px 12px;
+    background: #8e2de2;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+  }

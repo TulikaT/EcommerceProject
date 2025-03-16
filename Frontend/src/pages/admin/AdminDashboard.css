@@ -1,0 +1,120 @@
+:root {
+    --header-height: 80px;
+    --footer-height: 60px;
+    --margin: 20px;
+  }
+  
+  .admin-dashboard {
+    display: flex;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  
+  .admin-sidebar {
+    flex: 0 0 250px;
+    background: linear-gradient(135deg, #8E2DE2, #4A00E0); /* You can adjust colors */
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: none !important;
+  }
+
+  .admin-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: none !important;
+  }
+
+  .admin-header {
+    height: var(--header-height);
+    background-color: #fff;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    transition: none !important;
+  }
+  
+  .admin-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f6f9;
+    overflow-y: auto;
+    box-sizing: border-box;
+    transition: none !important;
+  }
+  
+  [data-theme="dark"] .admin-dashboard {
+    background-color: #121212; 
+    color: #e0e0e0;           
+  }
+
+  [data-theme="dark"] .admin-sidebar {
+    background: linear-gradient(135deg, #1a1a1a, #333); /* A darker gradient */
+    color: #e0e0e0;
+  }
+
+  [data-theme="dark"] .admin-sidebar nav ul li a {
+    color: #e0e0e0;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+  }
+  
+  [data-theme="dark"] .admin-sidebar nav ul li a:hover,
+  [data-theme="dark"] .admin-sidebar nav ul li a.active {
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+
+  [data-theme="dark"] .admin-header {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border-bottom: 1px solid #333;
+  }
+
+  [data-theme="dark"] .admin-content {
+    background-color: #1f1f1f;
+    color: #b11bec;
+  }
+
+  [data-theme="dark"] .chart-card {
+    background: #222;
+    color: #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  [data-theme="dark"] .sidebar-logout button {
+    color: #ddd;
+  }
+  
+  [data-theme="dark"] .sidebar-logout button:hover {
+    color: #fff;
+  }
+  
+  
+  [data-theme="dark"] .admin-dashboard {
+    background-color: #000000 ; 
+    color: #000000 ;
+  }
+  [data-theme="dark"] .admin-sidebar {
+    background: linear-gradient(135deg, #000000, #121212) !important;
+    color: #CCCCCC ;
+  }
+  [data-theme="dark"] .admin-content {
+    background-color: #121212 ;
+    color: #000000 ;
+  }
+  [data-theme="dark"] table {
+    background-color: #121212 ;
+    color: #CCCCCC ;
+    border-color: #333333 ;
+  }
+  [data-theme="dark"] th {
+    background-color: #1A1A1A ;
+    color: #FFFFFF ;
+  }
+  [data-theme="dark"] tr:hover {
+    background-color: #222222 ;
+    color: #121212;
+  }

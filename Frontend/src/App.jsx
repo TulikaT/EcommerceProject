@@ -1,33 +1,43 @@
-// src/App.jsx
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
 import Home from "./pages/Home";
-import Register from "./pages/Register"; // renamed to Register
+import Register from "./pages/Register"; 
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminHome from "./pages/admin/AdminHome";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminAnalytics from "./pages/admin/AdminAnalytics";
+import AdminNotifications from "./pages/admin/AdminNotifications";
+import AdminSettings from "./pages/admin/AdminSettings";
+import UserDashboard from "./pages/user/UserDashboard";
+import UserProfile from "./pages/user/UserProfile";
+import UserOrders from "./pages/user/UserOrders";
+import UserWishlist from "./pages/user/UserWishlist";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 
 const AppContent = ({ fetchCartCount, cartCount }) => {
-  // useLocation to determine the current path
   const location = useLocation();
-  // Check if the current path is an admin route.
   const isAdminRoute = location.pathname.startsWith("/admin");
 
   return (
     <>
-      {/* Render Header and Footer only if not on an admin route */}
-      { <Header cartCount={cartCount} fetchCartCount={fetchCartCount} />}
+      {!isAdminRoute && <Header cartCount={cartCount} fetchCartCount={fetchCartCount} />}
       <div className="main-content">
         <Routes>
-          {/* Public Routes */}
           <Route path="/" element={<Home fetchCartCount={fetchCartCount}/>} />
           <Route path="/contact-us" element={<ContactUs/>} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -38,11 +48,10 @@ const AppContent = ({ fetchCartCount, cartCount }) => {
           <Route path="/products" element={<Products fetchCartCount={fetchCartCount}/>} />
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart fetchCartCount={fetchCartCount} />} />
-          {/* <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/success" element={<Success />} />
-          <Route path="/cancel" element={<Cancel />} /> */}
+          <Route path="/cancel" element={<Cancel />} />
 
-          {/* Admin Routes
           <Route path="/admin" element={<AdminDashboard />}>
             <Route index element={<AdminHome />} />
             <Route path="products" element={<AdminProducts />} />
@@ -53,23 +62,20 @@ const AppContent = ({ fetchCartCount, cartCount }) => {
             <Route path="settings" element={<AdminSettings />} />
           </Route>
 
-          {/* User Dashboard Routes */}{/*
           <Route path="/user" element={<UserDashboard />}>
             <Route path="profile" element={<UserProfile />} />
             <Route path="orders" element={<UserOrders />} />
             <Route path="wishlist" element={<UserWishlist fetchCartCount={fetchCartCount} />} />
-          </Route>*/}
-        </Routes> 
+          </Route>
+        </Routes>
       </div>
-      { <Footer />}
+      {!isAdminRoute && <Footer />}
     </>
   );
 };
 
 const App = () => {
   const [cartCount, setCartCount] = useState(0);
-
-  // This function fetches the cart from backend, calculates total items, and sets cartCount
   const fetchCartCount = async () => {
     try {
       const token = localStorage.getItem("token");

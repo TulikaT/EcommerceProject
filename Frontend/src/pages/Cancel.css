@@ -1,0 +1,76 @@
+.cancel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: white; 
+    color: #333;
+    padding: 20px;
+  }
+  
+  .cancel-box {
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+  }
+  
+  .cancel-icon {
+    color: #ef4444;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+  }
+  
+  .cancel-title {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .cancel-message {
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .cancel-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ef4444;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+  }
+  
+  .cancel-button:hover {
+    background-color: #dc2626;
+  }
+
+  .cancel-container.dark {
+    background-color: #1a1a1a; 
+    color: #f8f8f8;
+  }
+  
+  .cancel-box.dark {
+    background: #292929;
+    color: #f8f8f8;
+  }
+  
+  .cancel-message.dark {
+    color: #ccc;
+  }
+  
+  .cancel-button.dark {
+    background-color: #b91c1c; 
+  }
+  
+  .cancel-button.dark:hover {
+    background-color: #9b1212;
+  }
+  

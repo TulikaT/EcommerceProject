@@ -1,15 +1,10 @@
-/* =============================
-   Home Container
-============================= */
 .home-container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    /* Remove the 'padding: 20px;' so sections can control their own padding. */
-    text-align: center; /* center text by default */
+    text-align: center;
   }
   
-  /* Title at top */
   .home-title {
     font-size: 2.2rem;
     margin-bottom: 30px;
@@ -18,20 +13,15 @@
   [data-theme="dark"] .home-title {
     color: #fff;
   }
-  
-  /* =============================
-     1) Slideshow Section
-     Alternate Background #1
-  ============================= */
+
   .slideshow-section {
-    padding: 30px 0;              /* Vertical space */
-    background-color: #f7f7fe;    /* Light background for light theme */
+    padding: 30px 0;              
+    background-color: #f7f7fe;    
   }
   [data-theme="dark"] .slideshow-section {
-    background-color: #1e1e1e;    /* Dark background for dark theme */
+    background-color: #1e1e1e;    
   }
-  
-  /* Existing slideshow styles remain the same */
+
   .slideshow-section {
     display: flex;
     justify-content: center;
@@ -77,12 +67,6 @@
   [data-theme="dark"] .slideshow-card p {
     color: #aaa;
   }
-  
-  /* =============================
-     2) Dual Section (Latest & Most Bought)
-     Alternate Background #2
-    
-  ============================= */
 
   .mainFeatureDiv{
     width: 100dvw;
@@ -90,11 +74,10 @@
   .dual-section {
     padding: 30px 0; 
     width: 100%;  
-               /* Vertical space */
-    background-color: #8c52ff7a;    /* Another light color for light theme */
+    background-color: #8c52ff7a;    
   }
   [data-theme="dark"] .dual-section {
-    background-color: #2b2b2b;    /* Another dark shade for dark theme */
+    background-color: #2b2b2b;    
   }
   
   .wbg{
@@ -121,8 +104,7 @@
     margin-right: 1%;
   }
  
-  
-  /* Existing dual-section styles remain the same */
+
   .dual-section {
     display: flex;
     min-height: 250px;
@@ -140,7 +122,7 @@
     flex: 1;
     display: flex;
     gap: 15px;
-    align-items: center;  /* center horizontally */
+    align-items: center;  
   }
   .dual-right h2, 
   .dual-right p,
@@ -150,9 +132,8 @@
     text-align: left;
   }
   .dual-product-card {
-    width: 250px;
-    height: 300px;
-    margin-top: 2%;    
+    width: 200px;
+    height: 300px;   
     padding: 10px;
     border-radius: 12px;        
     display: flex;
@@ -167,6 +148,8 @@
     transition: transform 0.2s ease;
     
   }
+
+ 
   
   .dual-product-card .btn{
     margin-bottom: 5px;
@@ -176,13 +159,13 @@
     transform: translateY(-5px);
   }
   .dual-product-card img {
-    width: 100%;
+    width: 170px;
     height: 180px;
+    margin-top: 13px;
     object-fit: cover;
     border-radius: 4px;
   }
   .dual-product-card h4 {
-    margin: 8px 0 4px;
     color: #333;
     font-size: 1rem;
   }
@@ -194,6 +177,11 @@
   .wbg h4, .dual-product-card p{
     color: white;
   }
+
+  .lo{
+    justify-content: end !important;
+  }
+
   [data-theme="dark"] .dual-product-card {
     background: #1e1e1e;
     box-shadow: none;
@@ -204,21 +192,44 @@
   [data-theme="dark"] .dual-product-card p {
     color: #aaa;
   }
-  
-  /* =============================
-     3) Featured Section
-     Alternate Background #1 again
-  ============================= */
+
+  .btn{
+    background-color: #8e2de2;
+    margin-bottom: 5px ;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 4%;
+    border-radius: 7px;
+  }
+
+  [data-theme="dark"] .dual-right{
+    color: white;
+  }
+
+  .btn:hover{
+    background-color: #530455;
+  }
+  [data-theme="dark"] .btn {
+    background-color:#9118f3 ;
+    color: white;
+  }
+  [data-theme="dark"] .btn:hover{
+    background-color: #7432f0;
+  }
+
+
+
   .featured-section {
     padding: 30px 0;  
     width: 100dvw;
     margin: 2%;    
-    border-radius: 12px;        /* Vertical space */
-    background-color: #f7f7fe;    /* same color as slideshow for a consistent "alternation" */
+    border-radius: 12px;      
+    background-color: #f7f7fe;   
     margin-bottom: 60px;
   }
   [data-theme="dark"] .featured-section {
-    background-color: #1e1e1e;    /* matches slideshow dark color */
+    background-color: #1e1e1e;   
   }
   
   .featured-section h2 {
@@ -226,7 +237,7 @@
     margin-bottom: 20px;
   }
   
-  /* Use flex + wrap for the product cards */
+
   .featured-grid {
     display: flex;
     flex-wrap: wrap;
@@ -263,7 +274,7 @@
     color: #e0e0e0;
     margin-bottom: 8px;
   }
-  /* “More” link */
+
   .more-link {
     display: inline-block;
     margin-top: 10px;
@@ -276,7 +287,6 @@
     text-decoration: underline;
   }
   
-  /* Dark theme for featured section */
   [data-theme="dark"] .featured-product-card {
     background: #ffffff;
     
@@ -292,7 +302,41 @@
     color: #bbb;
   }
   
-  /* Responsive adjustments for smaller screens */
+  .wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #6a0dad; /* Adjust to match your theme */
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+  }
+  
+  /* Icon styling */
+  .wishlist-btn i {
+    font-size: 16px;
+  }
+  
+  /* Hover effect */
+  .wishlist-btn:hover {
+    background-color: #4a0072;
+  }
+ 
+  .white p{
+    color: rgba(0, 0, 0, 0.507);
+  }
+
+  .wit p, .wit h2{
+    color: white !important;
+}
+
   @media (max-width: 768px) {
     .slideshow-section {
       flex-direction: column;
@@ -312,6 +356,6 @@
       margin-bottom: 10px;
     }
     .featured-grid {
-      justify-content: center; /* ensures items are centered on small screens */
+      justify-content: center;
     }
   }

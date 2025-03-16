@@ -68,21 +68,43 @@ const Home = ({fetchCartCount}) => {
     }
   }
 
+  const addToWishlist = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("Please log in first.");
+        return;
+      }
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      await axios.post("http://localhost:5000/api/wishlist", { productId }, config);
+      toast.success("Added to Wishlist!");
+    } catch (err) {
+      console.error("Add to wishlist error:", err.response?.data);
+      toast.error(err.response?.data?.message || "Some error occurred.");
+    }
+  };
+  
+
 
   if (loading) return <p style={{ textAlign: "center", marginTop: "80px" }}>Loading...</p>;
   if (error) return <p style={{ textAlign: "center", marginTop: "80px" }}>{error}</p>;
 
   return (
     <div className="home-container">
- 
+      <h1> Fashion E-commerce </h1>
       <Slideshow products={slideshowProducts} />
 
       <div className="mainFeatureDiv">
       <div className="dual-section wbg">
-        <div className="dual-left">
+        <div className="dual-left lo">
           {latestProducts.map((prod) => (
             
-            <div key={prod._id} className="dual-product-card">
+            <div key={prod._id} className="dual-product-card ">
+              <div className="wishlist-btn">
+    <button onClick={() => addToWishlist(prod._id)}>
+      <i className="fa fa-heart"></i>
+    </button>
+  </div>
               <Link to={`/products/${prod._id}`}>
                 <img
                   src={
@@ -95,9 +117,9 @@ const Home = ({fetchCartCount}) => {
               </Link>
               <h4>{prod.name}</h4>
               <p>${prod.price?.toFixed(2)}</p>
-              {/* <button className="btn btn-success" onClick={() => addToCart(prod._id)}>
+              <button className="btn btn-success" onClick={() => addToCart(prod._id)}>
                   Add to Cart
-              </button> */}
+              </button>
               </div>
           ))}
         </div>
@@ -120,7 +142,12 @@ const Home = ({fetchCartCount}) => {
         </div>
         <div className="dual-right">
           {mostBoughtProducts.map((prod) => (
-            <div key={prod._id} className="dual-product-card">
+            <div key={prod._id} className="dual-product-card white">
+              <div className="wishlist-btn">
+    <button onClick={() => addToWishlist(prod._id)}>
+      <i className="fa fa-heart"></i>
+    </button>
+  </div>
               <Link to={`/products/${prod._id}`}>
                 <img
                   src={
@@ -132,10 +159,10 @@ const Home = ({fetchCartCount}) => {
                 />
               </Link>
               <h4>{prod.name}</h4>
-              <p>${prod.price?.toFixed(2)}</p>
-              {/* <button className="btn btn-success" onClick={() => addToCart(prod._id)}>
+              <p >${prod.price?.toFixed(2)}</p>
+              <button className="btn btn-success" onClick={() => addToCart(prod._id)}>
                   Add to Cart
-                </button> */}
+                </button>
             </div>
           ))}
         </div>
@@ -147,6 +174,11 @@ const Home = ({fetchCartCount}) => {
         <div className="featured-grid">
           {featuredProducts.map((prod) => (
             <div key={prod._id} className="featured-product-card">
+              <div className="wishlist-btn">
+    <button onClick={() => addToWishlist(prod._id)}>
+      <i className="fa fa-heart"></i>
+    </button>
+  </div>
               <Link to={`/products/${prod._id}`}>
                 <img
                   src={
@@ -158,10 +190,10 @@ const Home = ({fetchCartCount}) => {
                 />
               </Link>
               <h4>{prod.name}</h4>
-              <p>${prod.price?.toFixed(2)}</p>
-              {/* <button className="btn btn-success" onClick={() => addToCart(prod._id)}>
+              <p >${prod.price?.toFixed(2)}</p>
+              <button className="btn btn-success" onClick={() => addToCart(prod._id)}>
                   Add to Cart
-                </button> */}
+                </button>
             </div>
           ))}
         </div>

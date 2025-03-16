@@ -1,0 +1,50 @@
+.admin-analytics {
+    padding: 20px;
+  }
+  
+  .admin-analytics h2 {
+    margin-bottom: 20px;
+    
+  }
+  
+
+  [data-theme = "dark"] .admin-analytics h2{
+    color:#ccc;
+  }
+
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .analytics-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+  
+  .analytics-card h3 {
+    margin-bottom: 10px;
+  }
+  
+  .analytics-stats {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .stats-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .stats-card h4 {
+    margin-bottom: 10px;
+  }
+  

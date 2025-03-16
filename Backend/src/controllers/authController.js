@@ -174,7 +174,7 @@ const storage = multer.diskStorage({
 export const upload = multer({ storage: storage });
 
 export const updateProfile = async (req, res) => {
-  const SERVER_URL = "http://localhost:5000";
+  const SERVER_URL = "http://localhost:4000";
   try {
     const user = await User.findById(req.user.id);
     if (!user) {

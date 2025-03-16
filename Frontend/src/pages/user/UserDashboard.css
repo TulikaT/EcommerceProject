@@ -1,0 +1,262 @@
+.user-dashboard {
+    display: flex;
+    height: 82dvh;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .user-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .user-dashboard {
+    display: flex;
+    min-height: calc(100vh - 140px);
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .user-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  :root {
+    --user-bg: #f6f2ff;
+    --user-header-bg: linear-gradient(135deg, #6a0572, #03045e);
+    --user-header-text: #ffffff;
+    --user-sidebar-bg: linear-gradient(135deg, #6a0572, #03045e);
+    --user-sidebar-text: #ffffff;
+    --user-content-bg: #ffffff;
+    --user-content-text: #3a3a3a;
+    --user-border: #8a2be2;
+    --user-accent: #6a0572;
+  }
+
+  [data-theme="light"] .user-dashboard {
+    background-color: var(--user-bg);
+    color: var(--user-content-text);
+  }
+
+  [data-theme="light"] .user-header {
+    background: var(--user-header-bg);
+    color: var(--user-header-text);
+    border-bottom: 2px solid var(--user-border);
+    padding: 10px 20px;
+  }
+
+  [data-theme="light"] .user-sidebar {
+    background: var(--user-sidebar-bg);
+    color: var(--user-sidebar-text);
+    border-right: 1px solid var(--user-border);
+    width: 240px;
+  }
+
+  [data-theme="light"] .user-sidebar nav ul li a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 4px;
+    color: var(--user-sidebar-text);
+    text-decoration: none;
+    margin: 5px 0;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  [data-theme="light"] .user-sidebar nav ul li a:hover,
+  [data-theme="light"] .user-sidebar nav ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  [data-theme="light"] .user-content {
+    background-color: var(--user-content-bg);
+    color: var(--user-content-text);
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  [data-theme="light"] button {
+    background-color: var(--user-accent);
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  [data-theme="light"] button:hover {
+    background-color: #530455;
+  }
+
+  [data-theme="light"] .user-profile {
+    position: sticky;  
+    top: 20px;        
+    z-index: 1; 
+    
+    background: white;
+    color: #000000;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+  }
+
+  [data-theme="light"] .profile-image-container {
+    width: 200px;
+    height: 200px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: -100px auto 20px; 
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  
+
+  [data-theme="light"] .profile-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    background-color: #fcecff; 
+    color: #2c2c2c;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+  
+  [data-theme="light"] .profile-table th,
+  [data-theme="light"] .profile-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e9d2f3;
+  }
+  
+  [data-theme="light"] .profile-table th {
+    background-color: #f6dfff;
+    color: #3a3a3a;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #e9d2f3;
+  }
+
+  [data-theme="light"] .profile-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  [data-theme="light"] .profile-table tr:hover {
+    background-color: #f5d7ff; 
+  }
+
+  [data-theme="dark"] .user-dashboard {
+    display: flex;
+    min-height: calc(100vh - 140px);
+    background-color: #000;
+    color: #ccc;
+  }
+
+  [data-theme="dark"] .user-header {
+    background: linear-gradient(135deg, #000, #111);
+    color: #fff;
+    border-bottom: 2px solid #e500ff;
+    padding: 10px 20px;
+  }
+
+  [data-theme="dark"] .user-sidebar {
+    background: linear-gradient(135deg, #000, #111);
+    color: #fff;
+    border-right: 1px solid #000000;
+    width: 240px;
+  }
+  [data-theme="dark"] .user-sidebar nav ul li a {
+    display: block;
+    border-radius: 4px;
+    padding: 12px 16px;
+    color: #ccc;
+  }
+  [data-theme="dark"] .user-sidebar nav ul li a:hover,
+  [data-theme="dark"] .user-sidebar nav ul li a.active {
+    background-color: rgba(229,0,255,0.2);
+    color: #fff;
+  }
+
+  [data-theme="dark"] .user-content {
+    flex: 1;
+    background-color: #000;
+    color: #ccc;
+    padding: 20px;
+  }
+
+  [data-theme="dark"] button {
+    background-color: #c302d8;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 4px;
+  }
+  [data-theme="dark"] button:hover {
+    background-color: #c000d8;
+  }
+
+  [data-theme="dark"] .user-profile {
+    background: linear-gradient(135deg, rgba(229,0,255,0.4), rgba(40,40,40,0.8));
+    color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  [data-theme="dark"] .profile-image-container {
+    width: 200px;
+    height: 200px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: -100px auto 20px;
+    background-color: #222;
+  }
+
+  [data-theme="dark"] .profile-table {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #111;
+    color: #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] .profile-table th,
+  [data-theme="dark"] .profile-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #333;
+  }
+  [data-theme="dark"] .profile-table th {
+    background-color: #222;
+    color: #c302d8;
+    border-bottom: 2px solid #444;
+  }
+  [data-theme="dark"] .profile-table tr:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  

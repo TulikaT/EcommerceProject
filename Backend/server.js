@@ -1,4 +1,3 @@
-// server.js
 import "dotenv/config.js";
 import express from "express";
 import cors from "cors";
@@ -6,9 +5,10 @@ import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import productRoutes from "./src/routes/productRoutes.js";
 import cartRoutes from "./src/routes/cartRoutes.js";
+import paymentRoutes from './src/routes/paymentRoutes.js';
 import adminUserRoutes from "./src/routes/adminUserRoutes.js";
 import adminProductRoutes from "./src/routes/adminProductRoutes.js";
-
+import wishlistRoutes from "./src/routes/wishlistRoutes.js";
 
 import fs from 'fs';
 import path from 'path';
@@ -20,10 +20,10 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cors({ 
-    origin: "*",
-    allowedHeaders: ["Content-Type", "Authorization"],
+  origin: process.env.FRONTEND_URL || "http://localhost:5173", 
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, 
 }));
-
 
 connectDB();
 
@@ -42,10 +42,13 @@ app.use("/api/products", productRoutes);
 
 app.use("/api/cart", cartRoutes);
 
+app.use("/api/payment", paymentRoutes);
+
 app.use("/api/admin/users", adminUserRoutes); 
 
 app.use("/api/admin/products", adminProductRoutes);
 
+app.use("/api/wishlist", wishlistRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

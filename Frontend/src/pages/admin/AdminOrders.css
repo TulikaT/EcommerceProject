@@ -1,0 +1,49 @@
+.admin-orders {
+    padding: 20px;
+    color: #000;
+  }
+  
+  .admin-orders h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+
+  [data-theme = "dark"] .admin-orders h2{
+    color: #ccc;
+  }
+
+  .admin-orders p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  [data-theme = "dark"] .admin-orders p{
+    color: #ccc;
+  }
+
+  .admin-orders table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .admin-orders table th,
+  .admin-orders table td {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .admin-orders table th {
+    background-color: #f4f6f9;
+    font-weight: 600;
+  }
+  
+  .admin-orders table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .admin-orders table tr:hover {
+    background-color: #eaeaea;
+  }
+  

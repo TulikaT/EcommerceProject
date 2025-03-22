@@ -116,6 +116,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+  
   
   .add-btn,
   .edit-btn {
@@ -195,4 +197,5 @@
     height: auto;
     border-radius: 4px;
   }
+
   

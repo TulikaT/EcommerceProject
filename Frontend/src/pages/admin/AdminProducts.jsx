@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminProducts.css";
 import { toast } from "react-toastify";
+import Modal from "../../components/Modal";
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +20,7 @@ const AdminProducts = () => {
 
   const getAuthConfig = () => {
     const token = localStorage.getItem("token");
-    console.log("Auth token:", token); 
+    console.log("Auth token:", token);
     return { headers: { Authorization: `Bearer ${token}` } };
   };
 
@@ -77,7 +78,6 @@ const AdminProducts = () => {
       images: "",
       stockCount: "",
       brand: "",
-      rating:"",
     });
     setModalVisible(true);
   };
@@ -114,15 +114,6 @@ const AdminProducts = () => {
       toast.error("Error saving product");
     }
   };
-
-  const Modal = ({ children, onClose }) => (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>X</button>
-        {children}
-      </div>
-    </div>
-  );
 
   return (
     <div className="admin-products">

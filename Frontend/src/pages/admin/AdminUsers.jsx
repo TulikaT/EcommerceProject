@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminUsers.css";
 import { toast } from "react-toastify";
+import Modal from "../../components/Modal"; 
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,7 +29,7 @@ const AdminUsers = () => {
       const res = await axios.get("http://localhost:4000/api/admin/users", config);
       setUsers(res.data);
     } catch (error) {
-      console.error("Error fetching users", error);
+      console.error("Error fetching users", error.response?.data || error);
       toast.error("Error fetching users");
     }
   };
@@ -46,7 +46,7 @@ const AdminUsers = () => {
       toast.success("User deleted successfully");
       fetchUsers();
     } catch (error) {
-      console.error("Error deleting user", error);
+      console.error("Error deleting user", error.response?.data || error);
       toast.error("Error deleting user");
     }
   };
@@ -101,19 +101,10 @@ const AdminUsers = () => {
       setModalVisible(false);
       fetchUsers();
     } catch (error) {
-      console.error("Error saving user", error);
+      console.error("Error saving user", error.response?.data || error);
       toast.error("Error saving user");
     }
   };
-
-  const Modal = ({ children, onClose }) => (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>X</button>
-        {children}
-      </div>
-    </div>
-  );
 
   return (
     <div className="admin-users">
@@ -181,20 +172,12 @@ const AdminUsers = () => {
               <input
                 type="password"
                 name="password"
-                placeholder={
-                  editingUser
-                    ? "Password (leave blank to keep current)"
-                    : "Password"
-                }
+                placeholder={editingUser ? "Password (leave blank to keep current)" : "Password"}
                 value={formData.password}
                 onChange={handleChange}
                 required={!editingUser}
               />
-              <select
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-              >
+              <select name="role" value={formData.role} onChange={handleChange}>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
               </select>

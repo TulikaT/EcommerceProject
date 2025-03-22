@@ -29,12 +29,12 @@ const Home = ({fetchCartCount}) => {
         setSlideshowProducts(random3);
 
 
-        const last2 = [...products].slice(-2);
-        setLatestProducts(last2);
+        const last4 = [...products].slice(-4);
+        setLatestProducts(last4);
 
         const mostBought = [...products]
           .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
-          .slice(0, 2);
+          .slice(0, 4);
         setMostBoughtProducts(mostBought);
 
 

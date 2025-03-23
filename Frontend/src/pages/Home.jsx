@@ -76,7 +76,7 @@ const Home = ({fetchCartCount}) => {
         return;
       }
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      await axios.post("http://localhost:5000/api/wishlist", { productId }, config);
+      await axios.post("http://localhost:4000/api/wishlist", { productId }, config);
       toast.success("Added to Wishlist!");
     } catch (err) {
       console.error("Add to wishlist error:", err.response?.data);

@@ -7,21 +7,26 @@ import { validationResult } from "express-validator";
 import path from "path";
 import multer from "multer";
 
+
 export const register = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
- 
+
   const { name, email, password, role, address, state, phone } = req.body;
-  
+
   try {
+   
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
+ 
     const hashedPassword = await bcrypt.hash(password, 10);
+
+   
     const user = new User({ 
       name, 
       email, 
@@ -31,47 +36,51 @@ export const register = async (req, res) => {
       state, 
       phone 
     });
+
+
     await user.save();
 
+  
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-    
+
+   
     return res.status(201).json({ token, user });
   } catch (error) {
-    return res.status(500).json({ message: "registration failed", error: error.message });
+    return res.status(500).json({ message: "Registration failed", error: error.message });
   }
 };
 
-
 export const login = async (req, res) => {
- 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  
+
   const { email, password } = req.body;
-  
+
   try {
+   
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    
+
+  
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-    
+
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-    
+
     return res.status(200).json({ token, user });
   } catch (error) {
     return res.status(500).json({ message: "Login failed", error: error.message });
@@ -80,24 +89,27 @@ export const login = async (req, res) => {
 
 
 export const forgotPassword = async (req, res) => {
-  
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  
+
   const { email } = req.body;
-  
+
   try {
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+
     const token = crypto.randomBytes(20).toString("hex");
     user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000;
     await user.save();
-    
+
+
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
@@ -105,19 +117,18 @@ export const forgotPassword = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-    
+
+
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${token}&email=${email}`;
-    
+
     const mailOptions = {
       to: user.email,
       from: process.env.EMAIL_USER,
       subject: "Password Reset Request",
-      text: `You are receiving this email because you (or someone else) have requested to reset your account's password.\\n\\n
-Please click on the following link, or paste it into your browser to complete the process:\\n\\n
-${resetUrl}\\n\\n
-If you did not request this, please ignore this email and your password will remain unchanged.\\n`
+      text: `Click on the following link to reset your password:\n\n${resetUrl}\n\nThis link will expire in 1 hour.`,
     };
-    
+
+ 
     transporter.sendMail(mailOptions, (err) => {
       if (err) {
         console.error("Email sending error:", err);
@@ -130,36 +141,40 @@ If you did not request this, please ignore this email and your password will rem
   }
 };
 
+
 export const resetPassword = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()){
     return res.status(400).json({ errors: errors.array() });
   }
-  
+
   const { token, email, newPassword } = req.body;
-  
+
   try {
+   
     const user = await User.findOne({
       email,
       resetPasswordToken: token,
       resetPasswordExpires: { $gt: Date.now() },
     });
-    
+
     if (!user) {
-      return res.status(400).json({ message: "Password reset token is invalid or has expired" });
+      return res.status(400).json({ message: "Invalid or expired reset token" });
     }
-    
+
+   
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
-    
+
     return res.json({ message: "Password has been updated successfully" });
   } catch (error) {
     return res.status(500).json({ message: "Error resetting password", error: error.message });
   }
 };
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -173,33 +188,33 @@ const storage = multer.diskStorage({
 
 export const upload = multer({ storage: storage });
 
+
 export const updateProfile = async (req, res) => {
   const SERVER_URL = "http://localhost:4000";
+  
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+ 
     if (req.body.name) user.name = req.body.name;
     if (req.body.email) user.email = req.body.email;
     if (req.body.phone) user.phone = req.body.phone;
     if (req.body.address) user.address = req.body.address;
     if (req.body.state) user.state = req.body.state;
 
+   
     if (req.files) {
       if (req.files.profileImage) {
-        const relativePath = req.files.profileImage[0].path.replace(/\\/g, '/');
-        
+        const relativePath = req.files.profileImage[0].path.replace(/\\/g, "/");
         user.profileImage = `${SERVER_URL}/${relativePath}`;
-        console.log("relativePath ", relativePath,"\nuser.profileImg ", user.profileImage)
       }
-      
       if (req.files.coverImage) {
-        const relativePath = req.files.coverImage[0].path.replace(/\\/g, '/');
+        const relativePath = req.files.coverImage[0].path.replace(/\\/g, "/");
         user.coverImage = `${SERVER_URL}/${relativePath}`;
       }
-      
     }
 
     await user.save();

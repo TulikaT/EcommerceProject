@@ -35,8 +35,10 @@ const UserProfile = () => {
       if (res.data.coverImage) setCoverPreview(res.data.coverImage);
       login(res.data, token);
     } catch (error) {
+      if(user){
       console.error("Error fetching profile", error);
       toast.error("Error fetching profile");
+      }
     }
   };
 

@@ -152,9 +152,6 @@
 
 
 
-  .container{
-    
-  }
   
   .home-container{
     min-height: 80dvh;
@@ -168,6 +165,7 @@
 
   .main-content {
     align-content: center;
+    height: fit-content;
     padding-top: calc(var(--header-height) + var(--layout-margin));
     padding-bottom: calc(var(--footer-height) + var(--layout-margin) + 20px);
   
@@ -272,7 +270,7 @@
     .main-content {
       padding-top: calc(var(--header-height) + 10px);
       padding-bottom: calc(var(--footer-height) + 10px + 20px);
-      min-height: calc(100vh - var(--header-height) - var(--footer-height) - 20px);
+      min-height: calc(100vh - var(--header-height) - 20px);
     }
   
     .signup-container,

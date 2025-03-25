@@ -69,7 +69,7 @@ const AppContent = ({ fetchCartCount, cartCount }) => {
           </Route>
         </Routes>
       </div>
-      {!isAdminRoute && <Footer />}
+      {/* {!isAdminRoute && <Footer />} */}
     </>
   );
 };

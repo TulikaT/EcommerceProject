@@ -139,7 +139,7 @@
       color: #873fda;
   }
   
-  [data-theme="light"] .footer {
+  /* [data-theme="light"] .footer {
     background-color: var(--bg-light);
     color: var(--text-light);
   }
@@ -147,14 +147,14 @@
   [data-theme="dark"] .footer {
     background-color: var(--bg-dark);
     color: var(--text-dark);
-  }
+  } */
   
 
 
 
   
   .home-container{
-    min-height: 80dvh;
+    /* min-height: 80dvh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -165,7 +165,7 @@
 
   .main-content {
     align-content: center;
-    height: fit-content;
+    /* height: 100dvh; */
     padding-top: calc(var(--header-height) + var(--layout-margin));
     padding-bottom: calc(var(--footer-height) + var(--layout-margin) + 20px);
   

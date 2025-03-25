@@ -1,6 +1,7 @@
 .home-container {
     width: 100%;
-    max-width: 1200px;
+    /* max-width: 1200px; */
+    background-color: #a276fc;
     margin: 0 auto;
     text-align: center;
   }
@@ -336,6 +337,9 @@
   .wit p, .wit h2{
     color: white !important;
 }
+
+
+
 
   @media (max-width: 768px) {
     .slideshow-section {

@@ -101,6 +101,11 @@
     width: fit-content;
   }
 
+  .main-content{
+    height: 100dvh;
+
+  }
+
   [data-theme="light"] .add-to-cart-btn {
     background-color: #6a0572;
     color: #fff;

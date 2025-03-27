@@ -161,12 +161,32 @@
   }
   .dual-product-card img {
     width: 200px;
-    height: 200px;
+    height: 184px;
     margin:0;
     padding: 0;
     object-fit: cover;
     border-radius: 4px;
   }
+
+  .fash{
+    margin-top: 60px ;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  .fashPara{
+    margin-bottom: 60px;
+    color: rgb(107, 7, 214);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  [data-theme = "light"] .fash{
+    text-shadow: none;
+    
+  }
+
   .dual-product-card h4 {
     color: #333;
     font-size: 1rem;

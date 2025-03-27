@@ -46,7 +46,7 @@ const AppContent = ({ fetchCartCount, cartCount }) => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/products" element={<Products fetchCartCount={fetchCartCount}/>} />
-          <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/products/:id" element={<ProductDetails fetchCartCount={fetchCartCount}/>} />
           <Route path="/cart" element={<Cart fetchCartCount={fetchCartCount} />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/success" element={<Success />} />

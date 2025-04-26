@@ -91,7 +91,10 @@ const Home = ({fetchCartCount}) => {
 
   return (
     <div className="home-container">
-      <h1> Fashion E-commerce </h1>
+      <div className="fashDiv">
+      <h1 className="fash"> Fashion E-commerce </h1>
+      <p className="fashPara">Shop from the confort of your home</p>
+      </div>
       <Slideshow products={slideshowProducts} />
 
       <div className="mainFeatureDiv">

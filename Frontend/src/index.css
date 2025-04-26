@@ -37,9 +37,12 @@
   body {
     font-family: var(--font-family);
     line-height: 1.6;
+
   }
   
-
+  [data-theme="dark"] body{
+    background-color: #000;
+  }
   [data-theme="light"] {
     background-color: var(--bg-light);
     color: var(--text-light);

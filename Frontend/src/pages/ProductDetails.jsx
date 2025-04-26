@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProductDetails.css"; 
+import { toast } from "react-toastify";
 
-const ProductDetails = () => {
+const ProductDetails = ({fetchCartCount}) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +24,21 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("Please log in first.");
+        return;
+      }
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      await axios.post("http://localhost:4000/api/cart", { productId, quantity: 1 }, config);
+      fetchCartCount()
+      toast.success("Added to cart!");
+    } catch (err) {
+      console.error("Add to cart error:", err.response?.data);
+      toast.error(err.response?.data?.message || "Some error occurred.");
+    }
   };
 
   if (loading) return <p>Loading product details...</p>;
@@ -51,7 +66,7 @@ const ProductDetails = () => {
           <span className="stock">Stock: {product.stockCount}</span>
           <p className="description">{product.description}</p>
           
-          <button className="add-to-cart-btn" onClick={handleAddToCart}>
+          <button className="add-to-cart-btn" onClick={() => handleAddToCart(product._id)}>
             Add to Cart
           </button>
         </div>

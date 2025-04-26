@@ -101,7 +101,7 @@ const Cart = ({ fetchCartCount }) => {
 
   if (loading) return <p>Loading cart...</p>;
   if (error) return <p>{error}</p>;
-  if (!cart || !cart.items || cart.items.length === 0) return <p>Your cart is empty.</p>;
+  if (!cart || !cart.items || cart.items.length === 0) return <p style={{display:'flex', alignItems:"center", justifyContent:"center", color:"white"}}>Your cart is empty.</p>;
   
   const subtotal = cart.items.reduce((acc, item) => {
     const price = item.product?.price || 0;

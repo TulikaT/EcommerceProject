@@ -1,8 +1,15 @@
+// src/pages/admin/AdminProducts.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AdminProducts.css";
 import { toast } from "react-toastify";
 import Modal from "../../components/Modal";
+
+const statusStyles = {
+  "In stock": { color: "green", fontWeight: "800" },
+  low: { color: "orange", fontWeight: "800" },
+  "out of stock": { color: "red", fontWeight: "800" },
+};
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -17,13 +24,15 @@ const AdminProducts = () => {
     stockCount: "",
     brand: "",
   });
+  const [stockInputs, setStockInputs] = useState({});
 
+  // Helper function to get Authorization config
   const getAuthConfig = () => {
     const token = localStorage.getItem("token");
-    console.log("Auth token:", token);
     return { headers: { Authorization: `Bearer ${token}` } };
   };
 
+  // Fetch all products from backend
   const fetchProducts = async () => {
     try {
       const config = getAuthConfig();
@@ -39,10 +48,9 @@ const AdminProducts = () => {
     fetchProducts();
   }, []);
 
+  // Delete a product
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this product?")) {
-      return;
-    }
+    if (!window.confirm("Are you sure you want to delete this product?")) return;
     try {
       const config = getAuthConfig();
       await axios.delete(`http://localhost:4000/api/admin/products/${id}`, config);
@@ -54,6 +62,7 @@ const AdminProducts = () => {
     }
   };
 
+  // Open modal for editing
   const handleEdit = (product) => {
     setEditingProduct(product);
     setFormData({
@@ -68,6 +77,7 @@ const AdminProducts = () => {
     setModalVisible(true);
   };
 
+  // Open modal for adding a new product
   const handleAdd = () => {
     setEditingProduct(null);
     setFormData({
@@ -82,6 +92,7 @@ const AdminProducts = () => {
     setModalVisible(true);
   };
 
+  // Handle form submit for adding/updating product
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
@@ -115,6 +126,28 @@ const AdminProducts = () => {
     }
   };
 
+  // Handle updating stock for a particular product
+  const handleStockChange = (id, value) => {
+    setStockInputs({ ...stockInputs, [id]: value });
+  };
+
+  const handleStockUpdate = async (id) => {
+    const newStock = stockInputs[id];
+    if (newStock === undefined || newStock === "") {
+      toast.error("Please enter a valid stock value.");
+      return;
+    }
+    try {
+      const config = getAuthConfig();
+      await axios.post(`http://localhost:4000/api/products/${id}/updateStock`, { newStock }, config);
+      toast.success("Stock updated successfully");
+      fetchProducts();
+    } catch (error) {
+      console.error("Error updating stock", error.response?.data || error);
+      toast.error("Error updating stock");
+    }
+  };
+
   return (
     <div className="admin-products">
       <div className="admin-products-header">
@@ -130,8 +163,10 @@ const AdminProducts = () => {
             <th>Name</th>
             <th>Price</th>
             <th>Stock</th>
+            <th>Status</th>
             <th>Category</th>
             <th>Brand</th>
+            <th>Update Stock</th>
             <th style={{ textAlign: "center" }}>Actions</th>
           </tr>
         </thead>
@@ -152,8 +187,47 @@ const AdminProducts = () => {
               <td>{prod.name}</td>
               <td>${prod.price}</td>
               <td>{prod.stockCount}</td>
+              <td style={statusStyles[prod.status] || {}}>{prod.status}</td>
               <td>{prod.category}</td>
               <td>{prod.brand}</td>
+              <td>
+  <input
+    type="number"
+    placeholder="New stock"
+    value={stockInputs[prod._id] || ""}
+    onChange={(e) => handleStockChange(prod._id, e.target.value)}
+    // Inline style for a modern look
+    style={{
+      width: "90px",
+      padding: "6px 8px",
+      border: "1px solid #ccc",
+      borderRadius: "6px",
+      backgroundColor: "#f9f9f9",
+      fontSize: "0.9rem",
+      marginRight: "6px",
+      outline: "none",
+    }}
+  />
+  <button
+    onClick={() => handleStockUpdate(prod._id)}
+    // Inline style for the update button
+    style={{
+      padding: "6px 12px",
+      border: "none",
+      borderRadius: "6px",
+      backgroundColor: "#8e2de2",
+      color: "white",
+      fontWeight: "600",
+      cursor: "pointer",
+      transition: "background-color 0.3s ease",
+    }}
+    onMouseOver={(e) => (e.target.style.backgroundColor = "#7a1cd7")}
+    onMouseOut={(e) => (e.target.style.backgroundColor = "#8e2de2")}
+  >
+    Update
+  </button>
+</td>
+
               <td style={{ textAlign: "center" }}>
                 <button className="edit-btn" onClick={() => handleEdit(prod)}>
                   Edit
@@ -166,7 +240,6 @@ const AdminProducts = () => {
           ))}
         </tbody>
       </table>
-
       {modalVisible && (
         <Modal onClose={() => setModalVisible(false)}>
           <div className="product-form">
@@ -176,61 +249,47 @@ const AdminProducts = () => {
                 type="text"
                 placeholder="Name"
                 value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
               />
               <textarea
                 placeholder="Description"
                 value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 required
               />
               <input
                 type="number"
                 placeholder="Price"
                 value={formData.price}
-                onChange={(e) =>
-                  setFormData({ ...formData, price: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                 required
               />
               <input
                 type="text"
                 placeholder="Category"
                 value={formData.category}
-                onChange={(e) =>
-                  setFormData({ ...formData, category: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                 required
               />
               <input
                 type="text"
                 placeholder="Image URL (comma separated if multiple)"
                 value={formData.images}
-                onChange={(e) =>
-                  setFormData({ ...formData, images: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, images: e.target.value })}
               />
               <input
                 type="number"
                 placeholder="Stock Count"
                 value={formData.stockCount}
-                onChange={(e) =>
-                  setFormData({ ...formData, stockCount: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, stockCount: e.target.value })}
                 required
               />
               <input
                 type="text"
                 placeholder="Brand"
                 value={formData.brand}
-                onChange={(e) =>
-                  setFormData({ ...formData, brand: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
               />
               <button type="submit" className={editingProduct ? "edit-btn" : "add-btn"}>
                 {editingProduct ? "Update Product" : "Add Product"}
@@ -244,3 +303,4 @@ const AdminProducts = () => {
 };
 
 export default AdminProducts;
+

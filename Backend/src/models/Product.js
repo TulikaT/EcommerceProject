@@ -36,6 +36,11 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    status: {
+      type: String,
+      enum: ["In stock", "low", "out of stock"],
+      default: "In stock",
+    },
   },
   { timestamps: true }
 );

@@ -89,7 +89,7 @@ const Register = () => {
             />
           </div>
 
-          {/* <div className="input-group">
+          <div className="input-group">
             <FontAwesomeIcon icon={faPhone} className="input-icon" />
             <input 
               type="text"
@@ -97,9 +97,9 @@ const Register = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-          </div> */}
+          </div>
 
-          {/* <div className="input-group">
+          <div className="input-group">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="input-icon" />
             <input 
               type="text"
@@ -107,9 +107,9 @@ const Register = () => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
-          </div> */}
+          </div>
 
-          {/* <div className="input-group">
+          <div className="input-group">
             <FontAwesomeIcon icon={faFlag} className="input-icon" />
             <input 
               type="text"
@@ -117,7 +117,7 @@ const Register = () => {
               value={stateField}
               onChange={(e) => setStateField(e.target.value)}
             />
-          </div> */}
+          </div>
 
           <div className="input-group">
             <FontAwesomeIcon icon={faLock} className="input-icon" />

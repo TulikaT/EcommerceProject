@@ -5,6 +5,10 @@
     margin: 0 auto;
     text-align: center;
   }
+
+  [data-theme="dark"] .home-container{
+    background-color: #000000;
+  }
   
   .home-title {
     font-size: 2.2rem;
